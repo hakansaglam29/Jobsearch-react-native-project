@@ -1,2 +1,2 @@
-export * from './jobItem';
-export * from './topicItem';
+export * from './JobItem';
+export * from './TopicItem';
