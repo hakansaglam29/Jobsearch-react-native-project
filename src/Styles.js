@@ -32,3 +32,20 @@ export const Introstyle = StyleSheet.create({
         padding:10,
     }
 });
+
+export const jobItemstyle = StyleSheet.create({
+        container:{
+        padding:5,
+        margin:15,
+        borderRadius:20,
+        backgroundColor: 'lightgray',
+        borderWidth:0.3,
+    },
+    text:{
+        fontWeight:'bold',
+        fontSize:18,
+        textAlign: 'center',
+        margin:3,
+        padding:5,
+    }
+});
