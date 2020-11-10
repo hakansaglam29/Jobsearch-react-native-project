@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import { Topicitem } from '../components'
-import {Introstyle} from '../Styles'
+import { Introstyle } from '../Styles'
 
 const topics = [
     {
@@ -52,16 +52,25 @@ const topics = [
 ]
 
 const Introduction = (props) => {
+
+    const selectLanguage = (lang) => {
+        props.navigation.navigate('Jobs', {selectedLanguage: lang})
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
-                <Text style={Introstyle.text}>Introduction</Text>
-                <ScrollView>
-                    {
-                        topics.map((t) => {
-                            return <Topicitem key={t.id} item={t} />
-                        })
-                    }
+                <Text style={Introstyle.text}>Select Language</Text>
+                <ScrollView
+                    horizontal
+                >
+                    {topics.map((t) => {
+                        return <Topicitem
+                            key={t.id}
+                            item={t}
+                            onSelect={() => selectLanguage(t.name)}
+                        />
+                    })}
                 </ScrollView>
             </View>
         </SafeAreaView>

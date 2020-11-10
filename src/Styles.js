@@ -5,11 +5,16 @@ export const Topicstyle = StyleSheet.create({
         padding:12,
         margin:7,
         borderRadius:6,
+        height: Dimensions.get('window').height /16,
+        width: Dimensions.get('window').width /3,
+        alignItems:'center',
+        justifyContent:'center'
     },
     text:{
         fontWeight:'bold',
         fontSize:18,
         color: 'white',
+        textAlign:'center',
     }
 });
 

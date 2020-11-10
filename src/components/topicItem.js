@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
-import {Topicstyle} from '../Styles';
+import { Topicstyle } from '../Styles';
 
 
 // {
@@ -12,7 +12,10 @@ import {Topicstyle} from '../Styles';
 
 const Topicitem = props => {
     return (
-        <TouchableOpacity style={[Topicstyle.container, {backgroundColor:props.item.color}]}>
+        <TouchableOpacity
+            style={[Topicstyle.container, { backgroundColor: props.item.color }]}
+            onPress={props.onSelect}
+        >
             <Text style={Topicstyle.text}> {props.item.name} </Text>
         </TouchableOpacity>
     );
