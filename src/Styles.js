@@ -43,7 +43,7 @@ export const jobItemstyle = StyleSheet.create({
     },
     text: {
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 12,
         textAlign: 'center',
         margin: 3,
         padding: 5,
@@ -60,9 +60,26 @@ export const jobsstyle = StyleSheet.create({
     },
     text: {
         fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: 12,
         textAlign: 'center',
         margin: 3,
         padding: 5,
-    }
+    },
+    show: {
+        backgroundColor: 'darkblue',
+        margin: 3,
+        padding: 10,
+        borderRadius:10,
+        position:'absolute',
+        bottom: 10,
+        alignSelf:'center',
+        width: Dimensions.get('window').width * 0.9
+
+    },
+    showtext: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        textAlign: 'center',
+        color: 'white'
+    },
 });

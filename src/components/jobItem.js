@@ -10,7 +10,6 @@ const JobItem = (props) => {
             >
             <Text style={jobItemstyle.text}>{props.job.title}</Text>
             <Text style={jobItemstyle.text}>{props.job.type}/{props.job.location}</Text>
-            <Text style={jobItemstyle.text}>{props.job.company}</Text>
         </TouchableOpacity>
     );
 };
