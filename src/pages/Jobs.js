@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, FlatList } from 'react-native';
+import { View, Text, SafeAreaView, FlatList, Button} from 'react-native';
+import Modal from 'react-native-modal'
 import Axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {JobItem} from '../components'
+import { JobItem } from '../components'
+import { jobsstyle } from '../Styles'
 
-// company: "Protenus"
-// company_logo: null
-// company_url: "http://Protenus"
-// created_at: "Tue Nov 10 22:05:21 UTC 2020"
-// description: "/p>↵<p>Senior Software Enginee3</a></p>↵"
-// id: "072283ab-d749-4b27-9080-a82451befec7"
-// location: "Baltimore, MD or U.S. Remote"
-// title: "Software Engineer (Full-Stack)"
-// type: "Full Time"
-// url: "https://jobs.github.com/positions/072283ab-d749-4b27-9080-a82451befec7"
 
 const Jobs = (props) => {
     const [data, setData] = useState([]);
+    const [modalFlag, setmodalFlag] = useState(false);
+    const [selectedJob, setSelectedJob] = useState('');
     const { selectedLanguage } = props.route.params;
 
     const fetchData = async () => {
@@ -27,18 +22,36 @@ const Jobs = (props) => {
 
     useEffect(() => { fetchData() }, [])
 
-    const renderJobs = ({item}) => <JobItem job={item}/>;
+    const renderJobs = ({ item }) => <JobItem job={item} onSelect={() => onJobSelect(item)} />;
 
+    const onJobSelect = (job) => {
+        setmodalFlag(true);
+        setSelectedJob(job)
+
+    }
+    
+    const onJobSave = async (job) => {
+        const savedJobList = await AsyncStorage.getItem('@SAVED_JOBS', [])
+      }
 
     return (
         <SafeAreaView>
             <View>
-                <Text style={{color:'blue', fontSize:20, fontWeight: '700', textAlign:'center', margin:10}}>JOBS</Text>
+                <Text style={{ color: 'blue', fontSize: 20, fontWeight: '700', textAlign: 'center', margin: 10 }}>JOBS for {selectedLanguage}</Text>
                 <FlatList
                     data={data}
                     renderItem={renderJobs}
-
                 />
+                <Modal isVisible={modalFlag} onBackdropPress={()=> setmodalFlag(false)}>
+                    <View style={jobsstyle.container}>
+                        <View style={{borderBottomWidth:2}}>
+                            <Text style={jobsstyle.text}>{selectedJob.title}</Text>
+                            <Text style={jobsstyle.text}>{selectedJob.location}</Text>
+                        </View>
+                        <Text numberOfLines={10} style={{margin:8}}>{selectedJob.description}</Text>
+                        <Button title='KAYDET'/>
+                    </View>
+                </Modal>
             </View>
         </SafeAreaView>
     );
